@@ -1,0 +1,11 @@
+{
+  "name": "@openx/discord",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx Discord channel plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

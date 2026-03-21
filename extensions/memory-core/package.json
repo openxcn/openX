@@ -1,0 +1,17 @@
+{
+  "name": "@openx/memory-core",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx core memory search plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "openx": ">=2026.1.26"
+  },
+  "devDependencies": {
+    "openx": "workspace:*"
+  }
+}

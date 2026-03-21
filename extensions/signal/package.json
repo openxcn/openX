@@ -1,0 +1,11 @@
+{
+  "name": "@openx/signal",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx Signal channel plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

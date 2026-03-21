@@ -1,0 +1,11 @@
+{
+  "name": "@openx/imessage",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx iMessage channel plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

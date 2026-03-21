@@ -1,0 +1,11 @@
+{
+  "name": "@openx/google-antigravity-auth",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx Google Antigravity OAuth provider plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

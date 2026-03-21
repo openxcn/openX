@@ -1,0 +1,11 @@
+{
+  "name": "@openx/whatsapp",
+  "version": "2026.1.27-beta.1",
+  "type": "module",
+  "description": "openx WhatsApp channel plugin",
+  "openx": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

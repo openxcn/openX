@@ -473,6 +473,17 @@ function Show-MainForm {
         }
         $Global:SelectedProduct = $productName
         
+        $scanWarning = [System.Windows.Forms.MessageBox]::Show(
+            "⚠️ 即将对 ""$productName"" 进行全盘扫描`n`n扫描将搜索以下内容：`n• 文件和文件夹`n• NPM/PNPM 全局包`n• 环境变量`n• Windows 服务`n• 计划任务`n• 注册表项`n`n扫描完成后，您可以选择要删除的项目。`n`n是否继续？",
+            "扫描确认",
+            [System.Windows.Forms.MessageBoxButtons]::YesNo,
+            [System.Windows.Forms.MessageBoxIcon]::Warning
+        )
+        
+        if ($scanWarning -ne [System.Windows.Forms.DialogResult]::Yes) {
+            return
+        }
+        
         $statusLabel.Text = "正在扫描 $productName..."
         $progressBar.Value = 0
         $resultListView.Items.Clear()
@@ -498,14 +509,36 @@ function Show-MainForm {
     })
 
     $uninstallButton.Add_Click({
+        $selectedCount = ($resultListView.Items | Where-Object { $_.Checked }).Count
+        if ($selectedCount -eq 0) {
+            [System.Windows.Forms.MessageBox]::Show(
+                "请先勾选要删除的项目！",
+                "提示",
+                [System.Windows.Forms.MessageBoxButtons]::OK,
+                [System.Windows.Forms.MessageBoxIcon]::Information
+            )
+            return
+        }
+        
         $result = [System.Windows.Forms.MessageBox]::Show(
-            "确定要卸载选中的项目吗？`n此操作不可恢复！",
-            "确认卸载",
+            "🚨 警告：即将删除选中的 $selectedCount 个项目！`n`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n  ⚠️ 此操作将永久删除所有选中的文件、`n  文件夹、注册表项和系统配置！`n`n  ❌ 删除后无法恢复！`n  ❌ 数据将永久丢失！`n  ❌ 回收站中找不到！`n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`n`n确定要继续吗？",
+            "⚠️ 危险操作确认",
             [System.Windows.Forms.MessageBoxButtons]::YesNo,
             [System.Windows.Forms.MessageBoxIcon]::Warning
         )
         
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
+            $secondConfirm = [System.Windows.Forms.MessageBox]::Show(
+                "🔴 最后确认：您真的要删除这些项目吗？`n`n此操作不可撤销！",
+                "🔴 最终确认",
+                [System.Windows.Forms.MessageBoxButtons]::YesNo,
+                [System.Windows.Forms.MessageBoxIcon]::Exclamation
+            )
+            
+            if ($secondConfirm -ne [System.Windows.Forms.DialogResult]::Yes) {
+                return
+            }
+            
             $selectedItems = @()
             foreach ($listItem in $resultListView.Items) {
                 if ($listItem.Checked) {
@@ -516,7 +549,7 @@ function Show-MainForm {
             if ($selectedItems.Count -gt 0) {
                 Remove-ScannedItems -Items $selectedItems -ProgressBar $progressBar -StatusLabel $statusLabel
                 [System.Windows.Forms.MessageBox]::Show(
-                    "卸载完成！`n已删除 $($selectedItems.Count) 项",
+                    "✅ 卸载完成！`n`n已删除 $($selectedItems.Count) 项",
                     "完成",
                     [System.Windows.Forms.MessageBoxButtons]::OK,
                     [System.Windows.Forms.MessageBoxIcon]::Information

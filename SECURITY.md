@@ -1,61 +1,49 @@
-# Security Policy
+# Security Policy / 安全政策
 
-If you believe you've found a security issue in openx, please report it privately.
+## 🇨🇳 中文
 
-## Reporting
+### 报告安全漏洞
 
-- Email: `steipete@gmail.com`
-- What to include: reproduction steps, impact assessment, and (if possible) a minimal PoC.
+如果您发现安全漏洞，请**不要**通过公开的 GitHub Issue 报告。
 
-## Operational Guidance
+请发送邮件至项目维护者，包含以下信息：
 
-For threat model + hardening guidance (including `openx security audit --deep` and `--fix`), see:
+- 漏洞描述
+- 复现步骤
+- 可能的影响
+- 建议的修复方案（如有）
 
-- `https://docs.openx.bot/gateway/security`
+我们会在 48 小时内回复您的报告。
 
-### Web Interface Safety
+### 支持的版本
 
-openx's web interface is intended for local use only. Do **not** bind it to the public internet; it is not hardened for public exposure.
+| 版本 | 支持状态 |
+| --- | --- |
+| latest | ✅ 支持 |
+| beta | ⚠️ 部分支持 |
+| dev | ❌ 不支持 |
 
-## Runtime Requirements
+---
 
-### Node.js Version
+## 🇺🇸 English
 
-openx requires **Node.js 22.12.0 or later** (LTS). This version includes important security patches:
+### Reporting a Vulnerability
 
-- CVE-2025-59466: async_hooks DoS vulnerability
-- CVE-2026-21636: Permission model bypass vulnerability
+If you discover a security vulnerability, please **do not** report it through public GitHub Issues.
 
-Verify your Node.js version:
+Please email the project maintainers with:
 
-```bash
-node --version  # Should be v22.12.0 or later
-```
+- Description of the vulnerability
+- Steps to reproduce
+- Potential impact
+- Suggested fix (if any)
 
-### Docker Security
+We will respond within 48 hours.
 
-When running openx in Docker:
+### Supported Versions
 
-1. The official image runs as a non-root user (`node`) for reduced attack surface
-2. Use `--read-only` flag when possible for additional filesystem protection
-3. Limit container capabilities with `--cap-drop=ALL`
-
-Example secure Docker run:
-
-```bash
-docker run --read-only --cap-drop=ALL \
-  -v openx-data:/app/data \
-  openx/openx:latest
-```
-
-## Security Scanning
-
-This project uses `detect-secrets` for automated secret detection in CI/CD.
-See `.detect-secrets.cfg` for configuration and `.secrets.baseline` for the baseline.
-
-Run locally:
-
-```bash
-pip install detect-secrets==1.5.0
-detect-secrets scan --baseline .secrets.baseline
-```
+| Version | Supported |
+| --- | --- |
+| latest | ✅ Yes |
+| beta | ⚠️ Partial |
+| dev | ❌ No |

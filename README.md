@@ -1,27 +1,91 @@
-# 🦞 openx �?Personal AI Assistant
+# 🦞 OpenX - 个人 AI 助手
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/openx/openx/main/docs/whatsapp-clawd.jpg" alt="Clawdbot" width="400">
+  <img src="https://raw.githubusercontent.com/openx/openx/main/docs/whatsapp-clawd.jpg" alt="OpenX" width="400">
 </p>
+
+<p align="center">
+  <a href="https://github.com/aibgsps-sys/openX"><img src="https://img.shields.io/badge/GitHub-openX-blue?style=for-the-badge&logo=github" alt="GitHub"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge" alt="MIT License"></a>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-purple?style=for-the-badge" alt="Platform">
+</p>
+
+---
+
+## 🇨🇳 中文简介
+
+**OpenX** 是一个可在本地运行的个人 AI 助手。支持多平台消息渠道，包括 WhatsApp、Telegram、Slack、Discord、Google Chat、Signal、iMessage、Microsoft Teams、WebChat 等。
+
+### ✨ 特性
+
+- 🔌 **多渠道支持** - WhatsApp、Telegram、Slack、Discord、微信等
+- 🤖 **多模型支持** - 支持 MiniMax、Claude、GPT、DeepSeek 等主流模型
+- 🎯 **本地运行** - 数据完全掌控在自己手中
+- 🖥️ **Web 控制台** - 可视化管理界面
+- 🔐 **OAuth 认证** - 支持 Claude Pro/Max、ChatGPT 订阅认证
+
+### 🚀 一键安装启动 (Windows)
+
+```bash
+# 方式一：双击运行
+双击 quick-start.bat 即可自动安装并启动
+
+# 方式二：手动安装
+git clone https://github.com/aibgsps-sys/openX.git
+cd openX
+pnpm install
+pnpm ui:build
+pnpm build
+node openx.mjs gateway --dev
+```
+
+安装完成后访问：http://127.0.0.1:18789/ui/
+
+### 📋 环境要求
+
+| 依赖 | 版本要求 |
+|------|---------|
+| Node.js | >= 18 (推荐 22 LTS) |
+| pnpm | 最新版 (自动安装) |
+
+### 🔧 配置模型
+
+首次使用需要配置 AI 模型，编辑 `~/.clawdbot/openx.json`：
+
+```json
+{
+  "agent": {
+    "model": "minimax/minimax-m2.7"
+  },
+  "models": {
+    "minimax/minimax-m2.7": {
+      "apiKey": "你的API密钥",
+      "baseURL": "https://api.minimax.chat/v1"
+    }
+  }
+}
+```
+
+### 📖 更多文档
+
+- [完整文档](https://docs.openx.bot)
+- [配置指南](https://docs.openx.bot/gateway/configuration)
+- [模型配置](https://docs.openx.bot/concepts/models)
+
+---
+
+## 🇺🇸 English
+
+**OpenX** is a *personal AI assistant* you run on your own devices.
+It answers you on the channels you already use (WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, WebChat), plus extension channels like BlueBubbles, Matrix, Zalo, and Zalo Personal.
+
+[Website](https://openx.bot) · [Docs](https://docs.openx.bot) · [Getting Started](https://docs.openx.bot/start/getting-started)
+
+---
 
 <p align="center">
   <strong>EXFOLIATE! EXFOLIATE!</strong>
 </p>
-
-<p align="center">
-  <a href="https://github.com/openx/openx/actions/workflows/ci.yml?branch=main"><img src="https://img.shields.io/github/actions/workflow/status/openx/openx/ci.yml?branch=main&style=for-the-badge" alt="CI status"></a>
-  <a href="https://github.com/openx/openx/releases"><img src="https://img.shields.io/github/v/release/openx/openx?include_prereleases&style=for-the-badge" alt="GitHub release"></a>
-  <a href="https://deepwiki.com/openx/openx"><img src="https://img.shields.io/badge/DeepWiki-openx-111111?style=for-the-badge" alt="DeepWiki"></a>
-  <a href="https://discord.gg/clawd"><img src="https://img.shields.io/discord/1456350064065904867?label=Discord&logo=discord&logoColor=white&color=5865F2&style=for-the-badge" alt="Discord"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
-</p>
-
-**openx** is a *personal AI assistant* you run on your own devices.
-It answers you on the channels you already use (WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, Microsoft Teams, WebChat), plus extension channels like BlueBubbles, Matrix, Zalo, and Zalo Personal. It can speak and listen on macOS/iOS/Android, and can render a live Canvas you control. The Gateway is just the control plane �?the product is the assistant.
-
-If you want a personal, single-user assistant that feels local, fast, and always-on, this is it.
-
-[Website](https://openx.bot) · [Docs](https://docs.openx.bot) · [Getting Started](https://docs.openx.bot/start/getting-started) · [Updating](https://docs.openx.bot/install/updating) · [Showcase](https://docs.openx.bot/start/showcase) · [FAQ](https://docs.openx.bot/start/faq) · [Wizard](https://docs.openx.bot/start/wizard) · [Nix](https://github.com/openx/nix-clawdbot) · [Docker](https://docs.openx.bot/install/docker) · [Discord](https://discord.gg/clawd)
 
 Preferred setup: run the onboarding wizard (`openx onboard`). It walks through gateway, workspace, channels, and skills. The CLI wizard is the recommended path and works on **macOS, Linux, and Windows (via WSL2; strongly recommended)**.
 Works with npm, pnpm, or bun.
@@ -40,7 +104,7 @@ Model note: while any model is supported, I strongly recommend **Anthropic Pro/M
 
 ## Install (recommended)
 
-Runtime: **Node �?2**.
+Runtime: **Node �?2**.
 
 ```bash
 npm install -g openx@latest
@@ -54,7 +118,7 @@ Legacy note: `clawdbot` remains available as a compatibility shim.
 
 ## Quick start (TL;DR)
 
-Runtime: **Node �?2**.
+Runtime: **Node �?2**.
 
 Full beginner guide (auth, pairing, channels): [Getting started](https://docs.openx.bot/start/getting-started)
 
@@ -116,14 +180,14 @@ Run `openx doctor` to surface risky/misconfigured DM policies.
 
 ## Highlights
 
-- **[Local-first Gateway](https://docs.openx.bot/gateway)** �?single control plane for sessions, channels, tools, and events.
-- **[Multi-channel inbox](https://docs.openx.bot/channels)** �?WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, BlueBubbles, Microsoft Teams, Matrix, Zalo, Zalo Personal, WebChat, macOS, iOS/Android.
-- **[Multi-agent routing](https://docs.openx.bot/gateway/configuration)** �?route inbound channels/accounts/peers to isolated agents (workspaces + per-agent sessions).
-- **[Voice Wake](https://docs.openx.bot/nodes/voicewake) + [Talk Mode](https://docs.openx.bot/nodes/talk)** �?always-on speech for macOS/iOS/Android with ElevenLabs.
-- **[Live Canvas](https://docs.openx.bot/platforms/mac/canvas)** �?agent-driven visual workspace with [A2UI](https://docs.openx.bot/platforms/mac/canvas#canvas-a2ui).
-- **[First-class tools](https://docs.openx.bot/tools)** �?browser, canvas, nodes, cron, sessions, and Discord/Slack actions.
-- **[Companion apps](https://docs.openx.bot/platforms/macos)** �?macOS menu bar app + iOS/Android [nodes](https://docs.openx.bot/nodes).
-- **[Onboarding](https://docs.openx.bot/start/wizard) + [skills](https://docs.openx.bot/tools/skills)** �?wizard-driven setup with bundled/managed/workspace skills.
+- **[Local-first Gateway](https://docs.openx.bot/gateway)** �?single control plane for sessions, channels, tools, and events.
+- **[Multi-channel inbox](https://docs.openx.bot/channels)** �?WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, BlueBubbles, Microsoft Teams, Matrix, Zalo, Zalo Personal, WebChat, macOS, iOS/Android.
+- **[Multi-agent routing](https://docs.openx.bot/gateway/configuration)** �?route inbound channels/accounts/peers to isolated agents (workspaces + per-agent sessions).
+- **[Voice Wake](https://docs.openx.bot/nodes/voicewake) + [Talk Mode](https://docs.openx.bot/nodes/talk)** �?always-on speech for macOS/iOS/Android with ElevenLabs.
+- **[Live Canvas](https://docs.openx.bot/platforms/mac/canvas)** �?agent-driven visual workspace with [A2UI](https://docs.openx.bot/platforms/mac/canvas#canvas-a2ui).
+- **[First-class tools](https://docs.openx.bot/tools)** �?browser, canvas, nodes, cron, sessions, and Discord/Slack actions.
+- **[Companion apps](https://docs.openx.bot/platforms/macos)** �?macOS menu bar app + iOS/Android [nodes](https://docs.openx.bot/nodes).
+- **[Onboarding](https://docs.openx.bot/start/wizard) + [skills](https://docs.openx.bot/tools/skills)** �?wizard-driven setup with bundled/managed/workspace skills.
 
 ## Star History
 
@@ -171,8 +235,8 @@ Run `openx doctor` to surface risky/misconfigured DM policies.
 
 ```
 WhatsApp / Telegram / Slack / Discord / Google Chat / Signal / iMessage / BlueBubbles / Microsoft Teams / Matrix / Zalo / Zalo Personal / WebChat
-               �?               �?┌───────────────────────────────�?�?           Gateway            �?�?      (control plane)         �?�?    ws://127.0.0.1:18789      �?└──────────────┬────────────────�?               �?               ├─ Pi agent (RPC)
-               ├─ CLI (openx �?
+               �?               �?┌───────────────────────────────�?�?           Gateway            �?�?      (control plane)         �?�?    ws://127.0.0.1:18789      �?└──────────────┬────────────────�?               �?               ├─ Pi agent (RPC)
+               ├─ CLI (openx �?
                ├─ WebChat UI
                ├─ macOS app
                └─ iOS / Android nodes
@@ -180,12 +244,12 @@ WhatsApp / Telegram / Slack / Discord / Google Chat / Signal / iMessage / BlueBu
 
 ## Key subsystems
 
-- **[Gateway WebSocket network](https://docs.openx.bot/concepts/architecture)** �?single WS control plane for clients, tools, and events (plus ops: [Gateway runbook](https://docs.openx.bot/gateway)).
-- **[Tailscale exposure](https://docs.openx.bot/gateway/tailscale)** �?Serve/Funnel for the Gateway dashboard + WS (remote access: [Remote](https://docs.openx.bot/gateway/remote)).
-- **[Browser control](https://docs.openx.bot/tools/browser)** �?openx‑managed Chrome/Chromium with CDP control.
-- **[Canvas + A2UI](https://docs.openx.bot/platforms/mac/canvas)** �?agent‑driven visual workspace (A2UI host: [Canvas/A2UI](https://docs.openx.bot/platforms/mac/canvas#canvas-a2ui)).
-- **[Voice Wake](https://docs.openx.bot/nodes/voicewake) + [Talk Mode](https://docs.openx.bot/nodes/talk)** �?always‑on speech and continuous conversation.
-- **[Nodes](https://docs.openx.bot/nodes)** �?Canvas, camera snap/clip, screen record, `location.get`, notifications, plus macOS‑only `system.run`/`system.notify`.
+- **[Gateway WebSocket network](https://docs.openx.bot/concepts/architecture)** �?single WS control plane for clients, tools, and events (plus ops: [Gateway runbook](https://docs.openx.bot/gateway)).
+- **[Tailscale exposure](https://docs.openx.bot/gateway/tailscale)** �?Serve/Funnel for the Gateway dashboard + WS (remote access: [Remote](https://docs.openx.bot/gateway/remote)).
+- **[Browser control](https://docs.openx.bot/tools/browser)** �?openx‑managed Chrome/Chromium with CDP control.
+- **[Canvas + A2UI](https://docs.openx.bot/platforms/mac/canvas)** �?agent‑driven visual workspace (A2UI host: [Canvas/A2UI](https://docs.openx.bot/platforms/mac/canvas#canvas-a2ui)).
+- **[Voice Wake](https://docs.openx.bot/nodes/voicewake) + [Talk Mode](https://docs.openx.bot/nodes/talk)** �?always‑on speech and continuous conversation.
+- **[Nodes](https://docs.openx.bot/nodes)** �?Canvas, camera snap/clip, screen record, `location.get`, notifications, plus macOS‑only `system.run`/`system.notify`.
 
 ## Tailscale access (Gateway dashboard)
 
@@ -231,9 +295,9 @@ Details: [Nodes](https://docs.openx.bot/nodes) · [macOS app](https://docs.openx
 ## Agent to Agent (sessions_* tools)
 
 - Use these to coordinate work across sessions without jumping between chat surfaces.
-- `sessions_list` �?discover active sessions (agents) and their metadata.
-- `sessions_history` �?fetch transcript logs for a session.
-- `sessions_send` �?message another session; optional reply‑back ping‑pong + announce step (`REPLY_SKIP`, `ANNOUNCE_SKIP`).
+- `sessions_list` �?discover active sessions (agents) and their metadata.
+- `sessions_history` �?fetch transcript logs for a session.
+- `sessions_send` �?message another session; optional reply‑back ping‑pong + announce step (`REPLY_SKIP`, `ANNOUNCE_SKIP`).
 
 Details: [Session tools](https://docs.openx.bot/concepts/session-tool)
 
@@ -247,14 +311,14 @@ ClawdHub is a minimal skill registry. With ClawdHub enabled, the agent can searc
 
 Send these in WhatsApp/Telegram/Slack/Google Chat/Microsoft Teams/WebChat (group commands are owner-only):
 
-- `/status` �?compact session status (model + tokens, cost when available)
-- `/new` or `/reset` �?reset the session
-- `/compact` �?compact session context (summary)
-- `/think <level>` �?off|minimal|low|medium|high|xhigh (GPT-5.2 + Codex models only)
+- `/status` �?compact session status (model + tokens, cost when available)
+- `/new` or `/reset` �?reset the session
+- `/compact` �?compact session context (summary)
+- `/think <level>` �?off|minimal|low|medium|high|xhigh (GPT-5.2 + Codex models only)
 - `/verbose on|off`
-- `/usage off|tokens|full` �?per-response usage footer
-- `/restart` �?restart the gateway (owner-only in groups)
-- `/activation mention|always` �?group activation toggle (groups only)
+- `/usage off|tokens|full` �?per-response usage footer
+- `/restart` �?restart the gateway (owner-only in groups)
+- `/activation mention|always` �?group activation toggle (groups only)
 
 ## Apps (optional)
 

@@ -1,0 +1,167 @@
+# OpenX 完整命令参考
+
+## 全局选项
+-V, --version              输出版本号
+--dev                      开发模式（隔离状态，端口 19001）
+--profile <name>           使用命名配置文件
+--no-color                 禁用 ANSI 颜色
+-h, --help                 显示帮助
+
+---
+
+## 主要命令
+
+### 1. 初始化和配置
+openx setup                # 初始化配置文件和工作区
+openx onboard              # 交互式向导：网关、工作区、技能
+openx configure            # 交互式配置向导
+openx config               # 配置管理（进入向导）
+openx config get <key>     # 获取配置值
+openx config set <key> <value>  # 设置配置值
+openx config unset <key>   # 删除配置值
+
+### 2. 网关控制
+openx gateway              # 启动网关（前台运行）
+openx gateway run          # 运行 WebSocket 网关
+openx gateway status       # 查看网关状态
+openx gateway start        # 启动网关服务
+openx gateway stop         # 停止网关服务
+openx gateway restart      # 重启网关服务
+openx gateway install      # 安装网关服务
+openx gateway uninstall    # 卸载网关服务
+openx gateway health       # 获取网关健康状态
+openx gateway probe        # 网关可达性检查
+openx gateway discover     # 通过 Bonjour 发现网关
+openx gateway call        # 调用网关方法
+openx gateway usage-cost  # 获取使用成本摘要
+
+### 网关选项
+--port <port>              网关端口（默认 18789）
+--bind <mode>              绑定模式（loopback/lan/tailnet/auto/custom）
+--token <token>            共享令牌
+--auth <mode>              认证模式（token/password）
+--password <password>      密码认证
+--allow-unconfigured       允许未配置启动
+--force                    强制停止占用端口的进程
+--verbose                  详细日志
+
+### 3. 消息和通信
+openx message              # 发送消息和通道操作
+openx message send --target <target> --message "内容"  # 发送消息
+openx message send --channel <channel> --target <target> --message "内容"
+
+### 4. Agent 和智能体
+openx agent                # 通过网关运行 agent
+openx agent --local       # 使用嵌入式 agent
+openx agents               # 管理隔离的 agent
+
+### 5. 通道管理
+openx channels             # 通道管理
+openx channels login       # 登录通道（WhatsApp/Telegram/Discord 等）
+openx channels login --verbose  # 登录并显示详细日志
+
+### 6. 设备和配对
+openx devices              # 设备配对和令牌管理
+openx devices pair         # 配对设备
+openx devices unpair       # 取消配对
+openx pairing              # 配对辅助工具
+
+### 7. 模型配置
+openx models               # 模型配置
+openx models list         # 列出可用模型
+openx models scan        # 扫描本地模型（Ollama 等）
+
+### 8. 内存和搜索
+openx memory               # 内存搜索工具
+openx memory search      # 搜索内存
+
+### 9. 会话管理
+openx sessions            # 列出存储的会话
+openx sessions list      # 列出所有会话
+
+### 10. 日志和诊断
+openx logs                # 网关日志
+openx doctor              # 健康检查和快速修复
+openx doctor --deep       # 深度诊断
+openx health             # 获取运行中网关的健康状态
+openx status             # 显示通道健康状态和最近会话
+
+### 11. 系统和服务
+openx system              # 系统事件、心跳和状态
+openx daemon             # 网关服务（旧版别名）
+openx cron                # Cron 调度器
+openx dns                 # DNS 辅助工具
+
+### 12. 浏览器控制
+openx browser             # 管理 clawd 的专用浏览器
+openx browser start      # 启动浏览器
+openx browser stop       # 停止浏览器
+
+### 13. 终端 UI
+openx tui                 # 终端用户界面
+
+### 14. 插件和扩展
+openx plugins             # 插件管理
+openx plugins list       # 列出插件
+openx plugins install    # 安装插件
+openx plugins remove     # 移除插件
+
+### 15. Hooks 和 Webhooks
+openx hooks               # Hooks 工具
+openx webhooks           # Webhook 辅助工具
+
+### 16. 安全和权限
+openx security            # 安全辅助工具
+openx approvals          # 执行批准
+
+### 17. 节点控制
+openx nodes               # 节点命令
+openx node                # 节点控制
+
+### 18. ACP 协议
+openx acp                 # Agent Control Protocol 工具
+
+### 19. 文档和帮助
+openx docs                # 文档辅助工具
+openx help <command>     # 显示命令帮助
+
+### 20. 其他工具
+openx sandbox             # 沙箱工具
+openx directory           # 目录命令
+openx update              # CLI 更新辅助工具
+openx dashboard           # 打开控制台 UI
+
+### 21. 重置和卸载
+openx reset               # 重置本地配置/状态（保留 CLI）
+openx uninstall           # 卸载网关服务 + 本地数据（CLI 保留）
+
+---
+
+## 常用命令组合
+
+### 快速启动
+openx gateway             # 启动网关
+openx gateway --force     # 强制启动（停止占用端口的进程）
+openx gateway --dev       # 开发模式启动
+
+### 配置管理
+openx configure          # 交互式配置
+openx config get agents.defaults.model.primary  # 获取默认模型
+openx config set agents.defaults.model.primary "gpt-4"  # 设置模型
+
+### 通道登录
+openx channels login --verbose  # 登录并显示详细日志
+
+### 发送消息
+openx message send --target +15555550123 --message "Hi" --json
+openx message send --channel telegram --target @mychat --message "Hi"
+
+### 健康检查
+openx doctor             # 健康检查
+openx gateway status     # 网关状态
+openx status             # 通道状态
+
+---
+
+## 完整文档
+https://docs.openx.bot/cli
